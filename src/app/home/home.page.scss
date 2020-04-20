@@ -1,31 +1,192 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-header ion-toolbar {
+  --background: #d4b283;
+  --opacity: 1;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+ion-content {
+  .banner {
+    background-image: url("/assets/index/banner.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    height: 167px;
+    background-position: center top;
+    padding-top: 30px;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+    ion-item {
+      --background: transparent;
+      --min-height: 76px;
 
-  color: #8c8c8c;
+      ion-avatar {
+        width: 55px;
+        height: 55px;
+      }
 
-  margin: 0;
-}
+      ion-label {
+        color: #fff;
 
-#container a {
-  text-decoration: none;
-}
+        h2 {
+          font-weight: bold;
+        }
 
-ion-content ion-toolbar {
-  --background: translucent;
+        h3 {
+          font-size: 12px;
+        }
+
+        p {
+          color: #fff;
+          font-size: 11px;
+        }
+      }
+
+      ion-note {
+        ion-input {
+          text-align: right;
+        }
+        ion-button {
+          --ion-color-shade: #FDF6E0 !important;
+          --ion-color-tint: #FDF6E0 !important;
+          --ripple-color: currentColor;
+          display: block;
+          margin: 0 10px 0 0;
+          font-size: 16px;
+          font-weight: normal;
+
+          &.ion-color-primary {
+            --ion-color-base: #FFF !important;
+            --ion-color-base-rgb: #FFF !important;
+            --ion-color-contrast: #BE9E61 !important;
+            --ion-color-contrast-rgb: #BE9E61 !important;
+            --border-width: 1px;
+            --border-color: #BE9E61;
+            --border-style: solid;
+            --color-activated: #836A3B;
+            --color-focused: #836A3B;
+            --color-hover: #836A3B;
+            --box-shadow: none;
+            --color: #836A3B;
+            --border-radius: 12px;
+          }
+
+          ion-icon {
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
+    & > .tips {
+      background-color: #FDF6E0 !important;
+      display: block;
+      margin: 20px 20px 0 20px;
+      font-weight: normal;
+      line-height: 44px;
+      text-align: left;
+      color: #836A3B;
+      border: 1px solid #BE9E61;
+      font-size: 16px;
+      box-sizing: border-box;
+      padding: 0 20px;
+
+      span {
+        float: right;
+      }
+    }
+  }
+
+  ion-grid {
+    border-bottom: 1px solid #eee;
+    background: #fff;
+
+    ion-col {
+      text-align: center;
+      font-size: 16px;
+      line-height: 43px;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 4em;
+        margin-left: -2em;
+        height: 2px;
+        background: #BE9E61;
+        display: none;
+      }
+
+      &.curr {
+        font-weight: bold;
+        color: #BE9E61;
+
+        &:after {
+          display: block;
+        }
+      }
+    }
+  }
+
+  ion-list {
+    margin-top: 0;
+    padding: 10px 0;
+
+    ion-item {
+      --min-height: 48px;
+
+      ion-label {
+        font-size: 15px;
+        margin-top: 7px;
+        margin-bottom: 7px;
+      }
+
+      ion-note {
+        font-size: 15px;
+        flex: 1;
+        text-align: right;
+        ion-grid {
+          border-bottom: none;
+          ion-col {
+            line-height: inherit;
+          }
+        }
+      }
+
+      .weui-uploader {
+        margin-top: 20px;
+
+        .weui-uploader__file {
+          width: 96px;
+          height: 96px;
+        }
+
+        .weui-uploader__input-box {
+          width: 96px;
+          height: 96px;
+        }
+      }
+      &.ion-invalid {
+        --color: red;
+      }
+      &.ion-valid.item-has-value {
+        --color: green;
+      }
+    }
+
+    & + ion-list {
+      margin-top: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 50px;
+    }
+  }
+  .ion-list-more {
+    height: 44px;
+    line-height: 44px;
+    margin-bottom: 10px;
+    background: #FDF6E0;
+    text-align: center;
+    color: #A5844A;
+    font-size: 15px;
+  }
 }

@@ -1,0 +1,21 @@
+.page-tips {
+  font-size: 15px;
+  --background: #FDF6E0;
+  --color: #A5844A;
+  --min-height: 42px;
+
+  ion-avatar {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    margin-inline-end: 10px;
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+
+  ion-note {
+    color: #000;
+  }
+}

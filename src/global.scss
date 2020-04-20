@@ -24,3 +24,58 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import "scss/mat-form-field";
+@import "scss/mat-button";
+@import "scss/ion-list";
+@import "scss/weui-uploader";
+@import "scss/ion-badge";
+@import "scss/ion-toolbar";
+@import "scss/ion-footer";
+@import "scss/weui-actionSheet";
+@import "scss/webkit/page-tips";
+@import "scss/android-fix";
+
+html {
+  background: transparent;
+}
+
+body {
+  background: transparent;
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+  th.mat-header-cell {
+    text-align: center;
+  }
+  tr.mat-header-row {
+    height: 48px;
+  }
+  tr.mat-row {
+    height: 36px;
+    td {
+      font-size: 12px;
+    }
+  }
+}
+
+ion-content {
+  --background: #FBFBFB
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #efbf82;
+    --color: #fff;
+
+    &:last-of-type {
+      --border-width: 0 !important
+    }
+  }
+}
+
+* {
+  outline: none;
+}

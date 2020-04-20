@@ -1,0 +1,13 @@
+ion-toolbar {
+  ion-buttons {
+    ion-button, ion-back-button {
+      --opacity: 1;
+      --color: inherit;
+    }
+
+    ion-button[routerDirection] {
+      font-size: 23px;
+      margin-left: -10px;
+    }
+  }
+}

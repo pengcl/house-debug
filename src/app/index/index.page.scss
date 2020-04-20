@@ -1,0 +1,204 @@
+.banner {
+  background-color: #C8B380;
+
+  ion-list-header {
+    font-size: 15px;
+    color: #fff;
+
+    .right {
+      position: absolute;
+      right: 15px;
+
+      img {
+        display: inline-block;
+        width: 14px;
+        vertical-align: inherit;
+        margin-right: 5px;
+      }
+    }
+
+    span, ion-icon {
+      display: inline-block;
+      vertical-align: text-top;
+    }
+
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+.chart-list {
+  .chart-box {
+    background-color: #6A512A;
+    color: #fff;
+    padding: 7.5px;
+    position: relative;
+
+    ion-icon {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 18px;
+    }
+
+    h3 {
+      font-size: 12px;
+      margin: 5px 0 3px;
+      text-align: left;
+    }
+
+    p {
+      font-size: 7px;
+      margin: 0px;
+      opacity: 0.9;
+      text-align: right;
+
+      &.desc {
+        font-size: 9px;
+        opacity: 0.8;
+        text-align: left;
+      }
+    }
+
+    span {
+      &.count {
+        display: block;
+        font-size: 20px;
+        line-height: 1;
+        text-align: left;
+      }
+    }
+
+    .chart {
+      margin-top: 3px;
+
+      canvas {
+        display: block;
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #C8B380;
+    --color: #fff;
+
+    ion-title {
+      ion-icon {
+        font-size: 20px;
+        vertical-align: text-top;
+      }
+    }
+  }
+
+  &.scrolled {
+    ion-toolbar {
+      --background: #fff;
+      --color: #000;
+    }
+  }
+}
+
+ion-slides {
+  --bullet-background-active: #fff;
+
+  & + ion-slides {
+    --bullet-background-active: #C8B380
+  }
+}
+
+mat-tab-group {
+  &::ng-deep {
+    .mat-tab-header, .mat-tab-nav-bar {
+      border-bottom: none;
+    }
+
+    mat-ink-bar {
+      background-color: #876E4B !important;
+    }
+
+    .mat-tab-label {
+      color: #C8B380;
+      opacity: 1;
+
+      &.mat-tab-label-active {
+        color: #6A512A;
+      }
+    }
+  }
+}
+
+.menu-list {
+  .menu-item {
+    ion-img {
+      width: 28px;
+      height: 28px;
+      margin: 20px auto 14px;
+    }
+
+    ion-text {
+      font-size: 12px;
+      color: #2C2C2C;
+      text-align: center;
+      display: block;
+      margin: 14px 0 0;
+    }
+  }
+
+  &.top-menu-list {
+    ion-row {
+      background: #C8B380;
+      border-radius: 4px;
+
+      .menu-item {
+        ion-text {
+          color: #fff;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  &.mid-menu-list {
+    ion-row {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+ion-content {
+  .chart-list {
+    .chart-box {
+      background-color: #EDEDED;
+      color: #795C3F;
+      padding: 10px;
+    }
+  }
+
+  .banner {
+    .chart-list {
+      .chart-box {
+        background-color: #6A512A;
+        color: #fff;
+        padding: 10px;
+      }
+    }
+  }
+
+  ion-list {
+    padding-top: 6px;
+
+    ion-list-header {
+      span {
+        position: absolute;
+        right: 15px;
+        color: #9D9D9D;
+        font-size: 15px;
+        display: block;
+      }
+    }
+  }
+}

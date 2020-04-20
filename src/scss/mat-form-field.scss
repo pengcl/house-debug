@@ -1,0 +1,11 @@
+.mat-form-field {
+  font-size: 18px;
+}
+.mat-form-field-underline {
+  height: 2px !important;
+  background-color: #BEA15B !important
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-invalid:not(.mat-focused) .mat-form-field-ripple {
+  height: 2px !important;
+}

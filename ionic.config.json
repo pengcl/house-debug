@@ -1,5 +1,7 @@
 {
   "name": "house-debug",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

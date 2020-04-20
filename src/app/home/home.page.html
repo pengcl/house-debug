@@ -1,20 +1,254 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pages/index" text=""></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      新建客档
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="banner">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="/assets/avatars/2.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>关联微信客户</h2>
+        <h3>获取客户画像</h3>
+      </ion-label>
+      <!--<ion-note>
+        <ion-button [routerLink]="['/pages/customer/waiting']" color="primary">
+          <ion-icon slot="start" name="attach"></ion-icon>
+          立即关联
+        </ion-button>
+      </ion-note>-->
+    </ion-item>
+    <!--<div [routerLink]="['/pages/customer/waiting']" class="tips">当前可关联微信客户<span slot="end">{{items?.length}}</span></div>-->
   </div>
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item required>
+        <ion-label>姓 名</ion-label>
+        <ion-note>
+          <ion-input formControlName="truename" placeholder="请输入客户姓名"></ion-input>
+        </ion-note>
+      </ion-item>
+      <ion-item required>
+        <ion-label>电话号码</ion-label>
+        <ion-note>
+          <ion-input formControlName="UserPhone" placeholder="请输入客户手机号码"></ion-input>
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('sex')" detail required>
+        <ion-label>性 别</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="sex"></ion-input>
+          {{form.get('sex').value ? (form.get('sex').value | label : SELECTIONS['sex']) : '请选择性别'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('BuyType')" detail required>
+        <ion-label>购房意向</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="BuyType"></ion-input>
+          {{form.get('BuyType').value ? (form.get('BuyType').value | label : SELECTIONS['BuyType']) : '请选择购房意向'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('BuidingType')" detail required>
+        <ion-label>建档类型</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="BuidingType"></ion-input>
+          {{form.get('BuidingType').value ? form.get('BuidingType').value : '请选择建档类型'}}
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="more">
+      <ion-item>
+        <ion-label>备选电话</ion-label>
+        <ion-note>
+          <ion-input formControlName="UserPhone2" placeholder="请输入备选电话"></ion-input>
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>是否业主</ion-label>
+        <ion-toggle (ionChange)="toggle('IsMemberYZ',$event)"></ion-toggle>
+      </ion-item>
+      <ion-item (click)="pickerShow('RZTJ')" detail>
+        <ion-label>认知途径</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="RZTJ"></ion-input>
+          {{form.get('RZTJ').value ? form.get('RZTJ').value : '请选择认知途径'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerCity('GZQY')" detail>
+        <ion-label>工作区域</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="GZQY"></ion-input>
+          {{form.get('GZQY').value ? form.get('GZQY').value : '请选择工作区域'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerCity('JZQY')" detail>
+        <ion-label>居住区域</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="JZQY"></ion-input>
+          {{form.get('JZQY').value ? form.get('JZQY').value : '请选择居住区域'}}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>详细地址</ion-label>
+        <ion-note>
+          <ion-input formControlName="addr" placeholder="请输入详细地址"></ion-input>
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('IDCardType')" detail>
+        <ion-label>证件类型</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="IDCardType"></ion-input>
+          {{form.get('IDCardType').value ? form.get('IDCardType').value : '请选择证件类型'}}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>证件号码</ion-label>
+        <ion-note>
+          <ion-input formControlName="IDCardNo" placeholder="请输入证件号码"></ion-input>
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerDate()" detail>
+        <ion-label>生 日</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="birthday"></ion-input>
+          {{form.get('birthday').value ? form.get('birthday').value : '请选择出生日期'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('BuyUse')" detail>
+        <ion-label>购房用途</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="BuyUse"></ion-input>
+          {{form.get('BuyUse').value ? form.get('BuyUse').value : '请选择购房用途'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('BuyHouseType')" detail>
+        <ion-label>意向户型</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="BuyHouseType"></ion-input>
+          {{form.get('BuyHouseType').value ? form.get('BuyHouseType').value : '请选择意向户型'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('BuyHouseArea')" detail>
+        <ion-label>购房意向面积</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="BuyHouseArea"></ion-input>
+          {{form.get('BuyHouseArea').value ? form.get('BuyHouseArea').value : '请选择意向面积'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('HYZK')" detail>
+        <ion-label>婚姻状况</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="HYZK"></ion-input>
+          {{form.get('HYZK').value ? form.get('HYZK').value : '请选择婚姻状况'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('JYCD')" detail>
+        <ion-label>教育程度</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="JYCD"></ion-input>
+          {{form.get('JYCD').value ? form.get('JYCD').value : '请选择教育程度'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('GZYS')" detail>
+        <ion-label>关注因素</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="GZYS"></ion-input>
+          {{form.get('GZYS').value ? form.get('GZYS').value : '请选择关注因素'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('GFYS')" detail>
+        <ion-label>购房预算</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="GFYS"></ion-input>
+          {{form.get('GFYS').value ? form.get('GFYS').value : '请选择购房预算'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('NLD')" detail>
+        <ion-label>年龄段</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="NLD"></ion-input>
+          {{form.get('NLD').value ? form.get('NLD').value : '请选择年龄段'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('SSHY')" detail>
+        <ion-label>所属行业</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="SSHY"></ion-input>
+          {{form.get('SSHY').value ? form.get('SSHY').value : '请选择所属行业'}}
+        </ion-note>
+      </ion-item>
+      <ion-item (click)="pickerShow('JTJG')" detail>
+        <ion-label>家庭结构</ion-label>
+        <ion-note>
+          <ion-input hidden formControlName="JTJG"></ion-input>
+          {{form.get('JTJG').value ? form.get('JTJG').value : '请选择家庭结构'}}
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <div (click)="more = !more" class="ion-list-more">{{more ? '收起' : '编辑'}}更多信息</div>
+  </form>
+  <form [formGroup]="followForm">
+    <ion-list>
+      <ion-item lines="none" required>
+        <ion-label position="stacked">跟进情况</ion-label>
+        <ion-textarea formControlName="FollowUpRecord" placeholder="请录入您的接待过程&跟踪策略……"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>照片留档</ion-list-header>
+      <ion-item lines="none">
+        <div class="weui-uploader">
+          <div class="weui-uploader__bd">
+            <ul class="weui-uploader__files">
+              <li
+                      class="weui-uploader__file weui-uploader__file_status"
+                      *ngFor="let item of uploader.queue"
+                      [weui-thumb]="item._file"
+              >
+                <div class="weui-uploader__file-content" *ngIf="item.isUploading">{{ item.progress }}%</div>
+                <div class="weui-uploader__file-content">
+                  <ion-icon (click)="del(item)" name="close-circle"></ion-icon>
+                </div>
+              </li>
+            </ul>
+            <div class="weui-uploader__input-box">
+              <input
+                      class="weui-uploader__input"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      [weui-uploader-file]="uploader"
+              />
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="reset()" color="medium" expand="full">重置</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="submit()" [disabled]="form.invalid || followForm.invalid" color="primary"
+                      expand="full">
+            保存客户档案
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
